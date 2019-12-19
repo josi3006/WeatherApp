@@ -33,6 +33,7 @@ $(document).ready(function () {
 
             var cityName = response.name
             var currDescription = response.weather[0].description
+            var currIcon = response.weather[0].icon
             var currTemp = response.main.temp
             var currHumid = response.main.humidity
             var currWind = response.wind.speed
@@ -61,6 +62,7 @@ $(document).ready(function () {
             console.log('Month: ' + month);
             console.log('Date: ' + date);
             console.log('Year: ' + year);
+            console.log(currIcon);
 
 
 
@@ -104,13 +106,16 @@ $(document).ready(function () {
                         var fFullDate = fmonth + '/' + fdate + '/' + fyear;
                         var fTemp = response.list[i].main.temp;
                         var fHumid = response.list[i].main.humidity;
+                        var fIcon = response.list[i].weather[0].icon;
+
+                        console.log('icon is: ' + fIcon);
 
                         console.log('date is: ' + fFullDate);
                         console.log('fTemp: ' + fTemp);
                         console.log('Humidity: ' + fHumid);
 
 
-                        foreArray.push(fFullDate, fTemp, fHumid);
+                        foreArray.push(fFullDate, fIcon, fTemp, fHumid);
 
                     }
 
@@ -123,34 +128,40 @@ $(document).ready(function () {
 
                     $('#currentWxCol').empty();
 
+                    var iconURL = '<image src="http://openweathermap.org/img/wn/' + currIcon + '@2x.png">';
 
-                    $('#currentWxCol').append('<h3>' + cityName + ' (' + month + '/' + date + '/' + year + ')</h3>');
+                    console.log(iconURL);
 
-                    $('#currentWxCol').append('<p>' + 'Temperature: ' + currTemp + '</p>');
+
+                    $('#currentWxCol').append('<h3>' + cityName + ' (' + month + '/' + date + '/' + year + ') ' + iconURL + '</h3>');
+
+                    $('#currentWxCol').append('<p>' + 'Temperature: ' + currTemp + ' &#176F' +'</p>');
                     $('#currentWxCol').append('<p>' + 'Humidity: ' + currHumid + '%</p>');
-                    $('#currentWxCol').append('<p>' + 'Wind Speed: ' + currWind + 'mph</p>');
+                    $('#currentWxCol').append('<p>' + 'Wind Speed: ' + currWind + ' mph</p>');
                     $('#currentWxCol').append('<p>' + 'UV Index: ' + currUV + '</p>');
 
+                    
 
                     $('#day1col').append('<h6>' + foreArray[0] + '</h6>');
-                    $('#day1col').append('<p class="small">' + 'Temp: ' + foreArray[1] + ' &#176F' + '</p>');
-                    $('#day1col').append('<p class="small">' + 'Humidity: ' + foreArray[2] + '%</p>');
+                    $('#day1col').append('<image src="http://openweathermap.org/img/wn/' + foreArray[1] + '@2x.png">');
+                    $('#day1col').append('<p class="small">' + 'Temp: ' + foreArray[2] + ' &#176F' + '</p>');
+                    $('#day1col').append('<p class="small">' + 'Humidity: ' + foreArray[3] + '%</p>');
 
-                    $('#day2col').append('<h6>' + foreArray[3] + '</h6>');
-                    $('#day2col').append('<p class="small">' + 'Temp: '  + foreArray[4] + ' &#176F' + '</p>');
-                    $('#day2col').append('<p class="small">' + 'Humidity: '  + foreArray[5] + '%</p>');
+                    $('#day2col').append('<h6>' + foreArray[4] + '</h6>');
+                    $('#day2col').append('<image src="http://openweathermap.org/img/wn/' + foreArray[5] + '@2x.png">');                    $('#day2col').append('<p class="small">' + 'Temp: '  + foreArray[6] + ' &#176F' + '</p>');
+                    $('#day2col').append('<p class="small">' + 'Humidity: '  + foreArray[7] + '%</p>');
 
-                    $('#day3col').append('<h6>' + foreArray[6] + '</h6>');
-                    $('#day3col').append('<p class="small">' + 'Temp: '  + foreArray[7] + ' &#176F' + '</p>');
-                    $('#day3col').append('<p class="small">' + 'Humidity: '  + foreArray[8] + '%</p>');
+                    $('#day3col').append('<h6>' + foreArray[8] + '</h6>');
+                    $('#day3col').append('<image src="http://openweathermap.org/img/wn/' + foreArray[9] + '@2x.png">');                    $('#day3col').append('<p class="small">' + 'Temp: '  + foreArray[10] + ' &#176F' + '</p>');
+                    $('#day3col').append('<p class="small">' + 'Humidity: '  + foreArray[11] + '%</p>');
 
-                    $('#day4col').append('<h6>' + foreArray[9] + '</h6>');
-                    $('#day4col').append('<p class="small">' + 'Temp: '  + foreArray[10] + ' &#176F' + '</p>');
-                    $('#day4col').append('<p class="small">' + 'Humidity: '  + foreArray[11] + '%</p>');
+                    $('#day4col').append('<h6>' + foreArray[12] + '</h6>');
+                    $('#day4col').append('<image src="http://openweathermap.org/img/wn/' + foreArray[13] + '@2x.png">');                    $('#day4col').append('<p class="small">' + 'Temp: '  + foreArray[14] + ' &#176F' + '</p>');
+                    $('#day4col').append('<p class="small">' + 'Humidity: '  + foreArray[15] + '%</p>');
 
-                    $('#day5col').append('<h6>' + foreArray[12] + '</h6>');
-                    $('#day5col').append('<p class="small">' + 'Temp: '  + foreArray[13] + ' &#176F' + '</p>');
-                    $('#day5col').append('<p class="small">' + 'Humidity: '  + foreArray[14] + '%</p>');
+                    $('#day5col').append('<h6>' + foreArray[16] + '</h6>');
+                    $('#day5col').append('<image src="http://openweathermap.org/img/wn/' + foreArray[17] + '@2x.png">');                    $('#day5col').append('<p class="small">' + 'Temp: '  + foreArray[18] + ' &#176F' + '</p>');
+                    $('#day5col').append('<p class="small">' + 'Humidity: '  + foreArray[19] + '%</p>');
 
 
 
