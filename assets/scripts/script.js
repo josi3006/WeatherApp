@@ -2,19 +2,27 @@
 
 
 $(document).ready(function () {
-    // URL to call weather API
+
+    pageLoadCityList();
+
+    var loadCity = localStorage.getItem('latestSearch');
+
+    $('#citySearchTxt').val(loadCity);
+
 
 
     $("#citySearchBtn").on("click", function (event) {
         event.preventDefault();
         var cityName = $("#citySearchTxt").val();
-        console.log(cityName);
+
+        localStorage.setItem('latestSearch', cityName);
 
 
-        // var cityName = 'richmond';
+        console.log('from the top: ' + cityName);
 
-        // $('#citySearchTxt');
+            // URL to call weather API
 
+ 
         var weatherURL = 'http://api.openweathermap.org/data/2.5/weather?q=' + cityName + ',us&units=imperial&APPID=ad876f463f78ac43b64b6d472fcaaf40';
 
 
@@ -48,21 +56,6 @@ $(document).ready(function () {
             var year = currDate.getFullYear();
 
 
-            console.log('City: ' + cityName);
-            console.log('Weather: ' + currDescription);
-            console.log('Temperature: ' + currTemp);
-            console.log('Humidity: ' + currHumid);
-            console.log('Wind Speed: ' + currWind);
-            console.log('Latitude: ' + latCoord);
-            console.log('Longitude: ' + lonCoord);
-            console.log(response.dt);
-            console.log(response.timezone);
-            console.log(currUTC);
-            console.log(currDate);
-            console.log('Month: ' + month);
-            console.log('Date: ' + date);
-            console.log('Year: ' + year);
-            console.log(currIcon);
 
 
 
@@ -79,9 +72,11 @@ $(document).ready(function () {
 
                 var currUV = response.value
 
-                console.log('Current UV Index: ' + currUV);
 
 
+
+
+                // Function to call forecast and loop to create 5-day array
 
 
                 var forecastURL = 'http://api.openweathermap.org/data/2.5/forecast?q=' + cityName + ',us&units=imperial&APPID=ad876f463f78ac43b64b6d472fcaaf40'
@@ -108,39 +103,35 @@ $(document).ready(function () {
                         var fHumid = response.list[i].main.humidity;
                         var fIcon = response.list[i].weather[0].icon;
 
-                        console.log('icon is: ' + fIcon);
-
-                        console.log('date is: ' + fFullDate);
-                        console.log('fTemp: ' + fTemp);
-                        console.log('Humidity: ' + fHumid);
-
 
                         foreArray.push(fFullDate, fIcon, fTemp, fHumid);
 
                     }
 
-                    console.log(foreArray);
 
 
 
 
-                    // Code to render info on page
+                    // Code to render current weather info on page
 
                     $('#currentWxCol').empty();
 
                     var iconURL = '<image src="http://openweathermap.org/img/wn/' + currIcon + '@2x.png">';
 
-                    console.log(iconURL);
 
 
                     $('#currentWxCol').append('<h3>' + cityName + ' (' + month + '/' + date + '/' + year + ') ' + iconURL + '</h3>');
 
-                    $('#currentWxCol').append('<p>' + 'Temperature: ' + currTemp + ' &#176F' +'</p>');
+                    $('#currentWxCol').append('<p>' + 'Temperature: ' + currTemp + ' &#176F' + '</p>');
                     $('#currentWxCol').append('<p>' + 'Humidity: ' + currHumid + '%</p>');
                     $('#currentWxCol').append('<p>' + 'Wind Speed: ' + currWind + ' mph</p>');
                     $('#currentWxCol').append('<p>' + 'UV Index: ' + currUV + '</p>');
 
-                    
+
+
+
+
+                    // Code to render forecast weather info on page
 
                     $('#day1col').append('<h6>' + foreArray[0] + '</h6>');
                     $('#day1col').append('<image src="http://openweathermap.org/img/wn/' + foreArray[1] + '@2x.png">');
@@ -148,20 +139,58 @@ $(document).ready(function () {
                     $('#day1col').append('<p class="small">' + 'Humidity: ' + foreArray[3] + '%</p>');
 
                     $('#day2col').append('<h6>' + foreArray[4] + '</h6>');
-                    $('#day2col').append('<image src="http://openweathermap.org/img/wn/' + foreArray[5] + '@2x.png">');                    $('#day2col').append('<p class="small">' + 'Temp: '  + foreArray[6] + ' &#176F' + '</p>');
-                    $('#day2col').append('<p class="small">' + 'Humidity: '  + foreArray[7] + '%</p>');
+                    $('#day2col').append('<image src="http://openweathermap.org/img/wn/' + foreArray[5] + '@2x.png">'); $('#day2col').append('<p class="small">' + 'Temp: ' + foreArray[6] + ' &#176F' + '</p>');
+                    $('#day2col').append('<p class="small">' + 'Humidity: ' + foreArray[7] + '%</p>');
 
                     $('#day3col').append('<h6>' + foreArray[8] + '</h6>');
-                    $('#day3col').append('<image src="http://openweathermap.org/img/wn/' + foreArray[9] + '@2x.png">');                    $('#day3col').append('<p class="small">' + 'Temp: '  + foreArray[10] + ' &#176F' + '</p>');
-                    $('#day3col').append('<p class="small">' + 'Humidity: '  + foreArray[11] + '%</p>');
+                    $('#day3col').append('<image src="http://openweathermap.org/img/wn/' + foreArray[9] + '@2x.png">'); $('#day3col').append('<p class="small">' + 'Temp: ' + foreArray[10] + ' &#176F' + '</p>');
+                    $('#day3col').append('<p class="small">' + 'Humidity: ' + foreArray[11] + '%</p>');
 
                     $('#day4col').append('<h6>' + foreArray[12] + '</h6>');
-                    $('#day4col').append('<image src="http://openweathermap.org/img/wn/' + foreArray[13] + '@2x.png">');                    $('#day4col').append('<p class="small">' + 'Temp: '  + foreArray[14] + ' &#176F' + '</p>');
-                    $('#day4col').append('<p class="small">' + 'Humidity: '  + foreArray[15] + '%</p>');
+                    $('#day4col').append('<image src="http://openweathermap.org/img/wn/' + foreArray[13] + '@2x.png">'); $('#day4col').append('<p class="small">' + 'Temp: ' + foreArray[14] + ' &#176F' + '</p>');
+                    $('#day4col').append('<p class="small">' + 'Humidity: ' + foreArray[15] + '%</p>');
 
                     $('#day5col').append('<h6>' + foreArray[16] + '</h6>');
-                    $('#day5col').append('<image src="http://openweathermap.org/img/wn/' + foreArray[17] + '@2x.png">');                    $('#day5col').append('<p class="small">' + 'Temp: '  + foreArray[18] + ' &#176F' + '</p>');
-                    $('#day5col').append('<p class="small">' + 'Humidity: '  + foreArray[19] + '%</p>');
+                    $('#day5col').append('<image src="http://openweathermap.org/img/wn/' + foreArray[17] + '@2x.png">'); $('#day5col').append('<p class="small">' + 'Temp: ' + foreArray[18] + ' &#176F' + '</p>');
+                    $('#day5col').append('<p class="small">' + 'Humidity: ' + foreArray[19] + '%</p>');
+
+
+
+
+
+
+                    function saveList() {
+
+                        // var cityArray = [];
+
+                        var cityArray = localStorage.getItem('cityArray');
+
+                        console.log(cityArray);
+
+                        if (cityArray === null) {
+                            cityArray = [];
+                        }
+
+                        else {
+                            cityArray = JSON.parse(cityArray);
+                        }
+
+
+                        console.log(cityArray);
+
+
+                        cityArray.push(cityName);
+
+                        console.log('going to LS: ' + cityArray);
+
+                        console.log(cityArray);
+
+                        localStorage.setItem('cityArray', JSON.stringify(cityArray));
+
+
+                    }
+
+                    saveList();
 
 
 
@@ -173,17 +202,57 @@ $(document).ready(function () {
 
 
 
+
         });
 
 
     });
 
+    var unique = [];
 
-    // Function to convert 3-hour forecast to 5-day
+    function pageLoadCityList() {
+
+        var cityArray = localStorage.getItem('cityArray');
+
+        console.log(cityArray);
+
+        if (cityArray === null) {
+            cityArray = [];
+        }
+
+        else {
+            cityArray = JSON.parse(cityArray);
+        }
+
+        unique = [...new Set(cityArray)];
+
+
+        for (i = 0; i < unique.length; i++) {
+
+
+            $('#searchTable').prepend('<tr><td>' + unique[i] + '</td></tr>');
+
+            $("#citySearchTxt").val(unique[0]);
+
+
+        }
+
+    }
+
+
+    $('td').on('click', function () {
+
+        var oldText = $(this).text();
+
+        console.log('you clicked: ' + oldText);
+
+        $("#citySearchTxt").val(oldText);
+
+        localStorage.setItem('latestSearch', oldText);
 
 
 
-
+    })
     // Function to create and/or call data from Local Storage (recent searches and last viewed city)
 
 
@@ -191,5 +260,9 @@ $(document).ready(function () {
 
 
     // Function to set last viewed city info into Local Storage
+
+
+
+
 });
 
