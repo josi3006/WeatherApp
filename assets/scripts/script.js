@@ -20,9 +20,9 @@ $(document).ready(function () {
 
         console.log('from the top: ' + cityName);
 
-            // URL to call weather API
+        // URL to call weather API
 
- 
+
         var weatherURL = 'http://api.openweathermap.org/data/2.5/weather?q=' + cityName + ',us&units=imperial&APPID=ad876f463f78ac43b64b6d472fcaaf40';
 
 
@@ -203,8 +203,8 @@ $(document).ready(function () {
 
 
 
-        });
 
+        });
 
     });
 
@@ -253,16 +253,8 @@ $(document).ready(function () {
 
 
     })
-    // Function to create and/or call data from Local Storage (recent searches and last viewed city)
-
-
-    // Function to push new city to Local Storage Array
-
-
-    // Function to set last viewed city info into Local Storage
 
 
 
 
 });
-
