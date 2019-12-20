@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Weather Search</title>
+
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <script src='assets/scripts/script.js'></script>
+
+</head>
+
+<body>
+
+
+    <nav class="navbar bg-dark text-white">
+        <span class="navbar-brand">Weather Search App</span>
+
+
+    </nav>
+
+
+    <div class='container'>
+
+        <div class='row' id='mainRow' class='m-5'>
+
+            <div class="col-8">
+
+                <div class='row border border-primary rounded m-5' id='currentWxRow'>
+
+                    <div class='col p-3' id='currentWxCol'></div>
+
+
+                </div>
+
+                <div class='row' id='fiveDayRow'>
+
+                    <div class='col m-1 bg-primary rounded text-white' id='day1col'></div>
+                    <div class='col m-1 bg-primary rounded text-white' id='day2col'></div>
+                    <div class='col m-1 bg-primary rounded text-white' id='day3col'></div>
+                    <div class='col m-1 bg-primary rounded text-white' id='day4col'></div>
+                    <div class='col m-1 bg-primary rounded text-white' id='day5col'></div>
+
+                </div>
+
+
+
+
+
+            </div>
+
+
+            <div class='col-4 bg-light pt-5' id='searchList'>
+                <form class="form-inline pb-3">
+                    <input class="form-control mr-sm-2" id='citySearchTxt' type="text" placeholder="City" aria-label="Search">
+                    <button class="btn btn-outline-primary my-2 my-sm-0" type="search" id='citySearchBtn'>Search</button>
+                </form>
+
+                <table class='table' id='searchTable'>
+                   
+
+
+                </table>
+            </div>
+
+
+
+        </div>
+
+
+
+
+
+
+
+
+
+
+    </div>
+
+
+
+</body>
+
+</html>
