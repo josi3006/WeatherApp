@@ -11,13 +11,13 @@ $(document).ready(function () {
 
 
 
-    $("#citySearchBtn").on("click", function (event) {
+    $('#citySearchBtn').on('click', function (event) {
         event.preventDefault();
 
-        $(".dayCol").empty();
+        $('.dayCol').empty();
 
-        
-        var cityName = $("#citySearchTxt").val();
+
+        var cityName = $('#citySearchTxt').val();
 
         localStorage.setItem('latestSearch', cityName);
 
@@ -27,7 +27,7 @@ $(document).ready(function () {
         // URL to call weather API
 
 
-        var weatherURL = 'http://api.openweathermap.org/data/2.5/weather?q=' + cityName + ',us&units=imperial&APPID=ad876f463f78ac43b64b6d472fcaaf40';
+        var weatherURL = 'https://api.openweathermap.org/data/2.5/weather?q=' + cityName + ',us&units=imperial&APPID=ad876f463f78ac43b64b6d472fcaaf40';
 
 
 
@@ -66,7 +66,7 @@ $(document).ready(function () {
 
             // Function to call UV Index API ***INSIDE THE WEATHER API CALL***
 
-            var uvURL = 'http://api.openweathermap.org/data/2.5/uvi?appid=ad876f463f78ac43b64b6d472fcaaf40&lat=' + latCoord + '&lon=' + lonCoord
+            var uvURL = 'https://api.openweathermap.org/data/2.5/uvi?appid=ad876f463f78ac43b64b6d472fcaaf40&lat=' + latCoord + '&lon=' + lonCoord
 
 
             $.ajax({
@@ -83,7 +83,7 @@ $(document).ready(function () {
                 // Function to call forecast and loop to create 5-day array
 
 
-                var forecastURL = 'http://api.openweathermap.org/data/2.5/forecast?q=' + cityName + ',us&units=imperial&APPID=ad876f463f78ac43b64b6d472fcaaf40'
+                var forecastURL = 'https://api.openweathermap.org/data/2.5/forecast?q=' + cityName + ',us&units=imperial&APPID=ad876f463f78ac43b64b6d472fcaaf40'
 
 
 
