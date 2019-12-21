@@ -13,6 +13,10 @@ $(document).ready(function () {
 
     $("#citySearchBtn").on("click", function (event) {
         event.preventDefault();
+
+        $(".dayCol").empty();
+
+        
         var cityName = $("#citySearchTxt").val();
 
         localStorage.setItem('latestSearch', cityName);
