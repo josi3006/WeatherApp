@@ -115,6 +115,13 @@ $(document).ready(function () {
                     // Code to render current weather info on page
 
                     $('#currentWxCol').empty();
+                    $('#day1col').empty();
+                    $('#day2col').empty();
+                    $('#day3col').empty();
+                    $('#day4col').empty();
+                    $('#day5col').empty();
+
+
 
                     var iconURL = '<image src="http://openweathermap.org/img/wn/' + currIcon + '@2x.png">';
 
