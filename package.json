@@ -1,0 +1,19 @@
+{
+  "name": "weatherapp",
+  "version": "1.0.0",
+  "description": "A simple weather forecaster",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/josi3006/WeatherApp.git"
+  },
+  "author": "John Granville Sims",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/josi3006/WeatherApp/issues"
+  },
+  "homepage": "https://github.com/josi3006/WeatherApp#readme"
+}
