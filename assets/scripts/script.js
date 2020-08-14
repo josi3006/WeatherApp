@@ -7,13 +7,19 @@ $(document).ready(function () {
 
     var loadCity = localStorage.getItem('latestSearch');
 
-    $('#citySearchTxt').val(loadCity);
+    var capLoadCity = loadCity.charAt(0).toUpperCase() + loadCity.slice(1)
+
+    $('#citySearchTxt').val(capLoadCity);
 
 
 
-    $("#citySearchBtn").on("click", function (event) {
+    $('#citySearchBtn').on('click', function (event) {
         event.preventDefault();
-        var cityName = $("#citySearchTxt").val();
+
+        $('.dayCol').empty();
+
+
+        var cityName = $('#citySearchTxt').val();
 
         localStorage.setItem('latestSearch', cityName);
 
@@ -23,7 +29,7 @@ $(document).ready(function () {
         // URL to call weather API
 
 
-        var weatherURL = 'http://api.openweathermap.org/data/2.5/weather?q=' + cityName + ',us&units=imperial&APPID=ad876f463f78ac43b64b6d472fcaaf40';
+        var weatherURL = 'https://api.openweathermap.org/data/2.5/weather?q=' + cityName + ',us&units=imperial&APPID=ad876f463f78ac43b64b6d472fcaaf40';
 
 
 
@@ -62,7 +68,7 @@ $(document).ready(function () {
 
             // Function to call UV Index API ***INSIDE THE WEATHER API CALL***
 
-            var uvURL = 'http://api.openweathermap.org/data/2.5/uvi?appid=ad876f463f78ac43b64b6d472fcaaf40&lat=' + latCoord + '&lon=' + lonCoord
+            var uvURL = 'https://api.openweathermap.org/data/2.5/uvi?appid=ad876f463f78ac43b64b6d472fcaaf40&lat=' + latCoord + '&lon=' + lonCoord
 
 
             $.ajax({
@@ -79,7 +85,7 @@ $(document).ready(function () {
                 // Function to call forecast and loop to create 5-day array
 
 
-                var forecastURL = 'http://api.openweathermap.org/data/2.5/forecast?q=' + cityName + ',us&units=imperial&APPID=ad876f463f78ac43b64b6d472fcaaf40'
+                var forecastURL = 'https://api.openweathermap.org/data/2.5/forecast?q=' + cityName + ',us&units=imperial&APPID=ad876f463f78ac43b64b6d472fcaaf40'
 
 
 
@@ -115,33 +121,17 @@ $(document).ready(function () {
                     // Code to render current weather info on page
 
                     $('#currentWxCol').empty();
-                    $('#day1col').empty();
-                    $('#day2col').empty();
-                    $('#day3col').empty();
-                    $('#day4col').empty();
-                    $('#day5col').empty();
-
-
 
                     var iconURL = '<image src="http://openweathermap.org/img/wn/' + currIcon + '@2x.png">';
 
-                    var currWxData = '<h3>' + cityName;
-                    currWxData += ' (' + month + '/' + date + '/' + year + ') ' + iconURL + '</h3>';
-                    currWxData += '<p>' + 'Temperature: ' + currTemp + ' &#176F' + '</p>';
-                    currWxData += '<p>' + 'Humidity: ' + currHumid + '%</p>';
-                    currWxData += '<p>' + 'Wind Speed: ' + currWind + ' mph</p>';
-                    currWxData += '<p>' + 'UV Index: ' + currUV + '</p></div>';
 
-                    console.log('string is: ', currWxData);
 
-                    $('#currentWxCol').addClass('border border-primary rounded m-5');
-                    $('#currentWxCol').append(currWxData);
+                    $('#currentWxCol').append('<h3>' + cityName + ' (' + month + '/' + date + '/' + year + ') ' + iconURL + '</h3>');
 
-                    // $('#currentWxCol').append('<div class="border border-primary rounded m-5"><h3>' + cityName + ' (' + month + '/' + date + '/' + year + ') ' + iconURL + '</h3>');
-                    // $('#currentWxCol').append('<p>' + 'Temperature: ' + currTemp + ' &#176F' + '</p>');
-                    // $('#currentWxCol').append('<p>' + 'Humidity: ' + currHumid + '%</p>');
-                    // $('#currentWxCol').append('<p>' + 'Wind Speed: ' + currWind + ' mph</p>');
-                    // $('#currentWxCol').append('<p>' + 'UV Index: ' + currUV + '</p></div>');
+                    $('#currentWxCol').append('<p>' + 'Temperature: ' + currTemp + ' &#176F' + '</p>');
+                    $('#currentWxCol').append('<p>' + 'Humidity: ' + currHumid + '%</p>');
+                    $('#currentWxCol').append('<p>' + 'Wind Speed: ' + currWind + ' mph</p>');
+                    $('#currentWxCol').append('<p>' + 'UV Index: ' + currUV + '</p>');
 
 
 
