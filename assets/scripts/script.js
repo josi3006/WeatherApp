@@ -125,14 +125,23 @@ $(document).ready(function () {
 
                     var iconURL = '<image src="http://openweathermap.org/img/wn/' + currIcon + '@2x.png">';
 
+                    var currWxData = '<h3>' + cityName;
+                    currWxData += ' (' + month + '/' + date + '/' + year + ') ' + iconURL + '</h3>';
+                    currWxData += '<p>' + 'Temperature: ' + currTemp + ' &#176F' + '</p>';
+                    currWxData += '<p>' + 'Humidity: ' + currHumid + '%</p>';
+                    currWxData += '<p>' + 'Wind Speed: ' + currWind + ' mph</p>';
+                    currWxData += '<p>' + 'UV Index: ' + currUV + '</p></div>';
 
+                    console.log('string is: ', currWxData);
 
-                    $('#currentWxCol').append('<h3>' + cityName + ' (' + month + '/' + date + '/' + year + ') ' + iconURL + '</h3>');
+                    $('#currentWxCol').addClass('border border-primary rounded m-5');
+                    $('#currentWxCol').append(currWxData);
 
-                    $('#currentWxCol').append('<p>' + 'Temperature: ' + currTemp + ' &#176F' + '</p>');
-                    $('#currentWxCol').append('<p>' + 'Humidity: ' + currHumid + '%</p>');
-                    $('#currentWxCol').append('<p>' + 'Wind Speed: ' + currWind + ' mph</p>');
-                    $('#currentWxCol').append('<p>' + 'UV Index: ' + currUV + '</p>');
+                    // $('#currentWxCol').append('<div class="border border-primary rounded m-5"><h3>' + cityName + ' (' + month + '/' + date + '/' + year + ') ' + iconURL + '</h3>');
+                    // $('#currentWxCol').append('<p>' + 'Temperature: ' + currTemp + ' &#176F' + '</p>');
+                    // $('#currentWxCol').append('<p>' + 'Humidity: ' + currHumid + '%</p>');
+                    // $('#currentWxCol').append('<p>' + 'Wind Speed: ' + currWind + ' mph</p>');
+                    // $('#currentWxCol').append('<p>' + 'UV Index: ' + currUV + '</p></div>');
 
 
 
