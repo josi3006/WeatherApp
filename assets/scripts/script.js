@@ -5,21 +5,28 @@ $(document).ready(function () {
 
     pageLoadCityList();
 
-    var loadCity = localStorage.getItem('latestSearch');
+    // var loadCity = localStorage.getItem('latestSearch');
 
-    var capLoadCity = loadCity.charAt(0).toUpperCase() + loadCity.slice(1)
+    // var capLoadCity = loadCity.charAt(0).toUpperCase() + loadCity.slice(1)
 
-    $('#citySearchTxt').val(capLoadCity);
+    // $('#citySearchTxt').val(capLoadCity);
 
+    $('#citySearchTxt').on('click', function (event) {
+        event.preventDefault();
 
+        console.log('you clicked me!!!');
+    });
 
+  
     $('#citySearchBtn').on('click', function (event) {
         event.preventDefault();
 
+
+
         $('.dayCol').empty();
 
-
         var cityName = $('#citySearchTxt').val();
+
 
         localStorage.setItem('latestSearch', cityName);
 
@@ -126,7 +133,9 @@ $(document).ready(function () {
 
 
 
-                    $('#currentWxCol').append('<h3>' + cityName + ' (' + month + '/' + date + '/' + year + ') ' + iconURL + '</h3>');
+                    // $('#currentWxCol').append('<h3>' + cityName + ' (' + month + '/' + date + '/' + year + ') ' + iconURL + '</h3>');
+                    $('#currentWxCol').append('<h3>' + 'Current Weather' + ' for ' + month + '/' + date + '/' + year + ' ' + iconURL + '</h3>');
+
 
                     $('#currentWxCol').append('<p>' + 'Temperature: ' + currTemp + ' &#176F' + '</p>');
                     $('#currentWxCol').append('<p>' + 'Humidity: ' + currHumid + '%</p>');
@@ -162,6 +171,7 @@ $(document).ready(function () {
 
 
 
+                    $("#navheader").text(cityName);
 
 
 
@@ -218,6 +228,8 @@ $(document).ready(function () {
 
     function pageLoadCityList() {
 
+        $("#navheader").text("Weather Search");
+
         var cityArray = localStorage.getItem('cityArray');
 
         console.log(cityArray);
@@ -236,9 +248,11 @@ $(document).ready(function () {
         for (i = 0; i < unique.length; i++) {
 
 
-            $('#searchTable').prepend('<tr><td>' + unique[i] + '</td></tr>');
+            $('#searchTable').prepend('<tr><td><a>' + unique[i] + '</a></td></tr>');
 
-            $("#citySearchTxt").val(unique[0]);
+            // $("#citySearchTxt").val(unique[0]);
+            $("#citySearchTxt").val('Enter City Name');
+
 
 
         }
@@ -255,7 +269,6 @@ $(document).ready(function () {
         $("#citySearchTxt").val(oldText);
 
         localStorage.setItem('latestSearch', oldText);
-
 
 
     })
